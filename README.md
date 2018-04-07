@@ -13,6 +13,7 @@
 - Transaction query by both SessionId and TransactionId
 
 ### Install via nuget
+Check from Nuget [gallery](https://www.nuget.org/packages/Arts.SslCommerze)
 ```
 PM > Install-Package Arts.SslCommerze
 ```
