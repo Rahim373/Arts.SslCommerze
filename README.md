@@ -14,7 +14,7 @@
 
 ### Install via nuget
 ```
-PM > Install-Package 
+PM > Install-Package Arts.SslCommerze
 ```
 ### Configuration
 * Add a `sslcommerz.config` file in your project directory. The content will have your store information like **StoreId**, **StorePass**.
