@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -9,6 +9,11 @@ namespace ARTS.SslCommerze
 {
     public class SslQuery
     {
+        private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore,
+            MissingMemberHandling = MissingMemberHandling.Ignore
+        };
         public static async Task<TransactionQueryBySessionResponse> TransactionQueryBySessionIdAsync(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
@@ -22,7 +27,7 @@ namespace ARTS.SslCommerze
 
                 parameters.Add("sessionkey", sessionId);
                 parameters.Add("store_id", Configuration.STORE_ID);
-                parameters.Add("store_passwd", Configuration.STORE_ID);
+                parameters.Add("store_passwd", Configuration.STORE_PASS);
                 parameters.Add("format", "json");
 
                 StringBuilder sb = new StringBuilder();
@@ -36,7 +41,7 @@ namespace ARTS.SslCommerze
                 HttpResponseMessage response = await client.GetAsync(requestUrl);
                 response.EnsureSuccessStatusCode();
                 string responseString = await response.Content.ReadAsStringAsync();
-                TransactionQueryBySessionResponse refundResult = JsonConvert.DeserializeObject<TransactionQueryBySessionResponse>(responseString);
+                TransactionQueryBySessionResponse refundResult = JsonConvert.DeserializeObject<TransactionQueryBySessionResponse>(responseString,settings);
                 return refundResult;
             }
         }
@@ -54,7 +59,7 @@ namespace ARTS.SslCommerze
 
                 parameters.Add("tran_id", transId);
                 parameters.Add("store_id", Configuration.STORE_ID);
-                parameters.Add("store_passwd", Configuration.STORE_ID);
+                parameters.Add("store_passwd", Configuration.STORE_PASS);
                 parameters.Add("format", "json");
 
                 StringBuilder sb = new StringBuilder();
@@ -64,11 +69,10 @@ namespace ARTS.SslCommerze
                     sb.Append(item.Key + "=" + item.Value + "&");
                 }
                 requestUrl = sb.ToString().TrimEnd('&');
-
                 HttpResponseMessage response = await client.GetAsync(requestUrl);
                 response.EnsureSuccessStatusCode();
                 string responseString = await response.Content.ReadAsStringAsync();
-                TransactionQueryByTransIdResponse refundResult = JsonConvert.DeserializeObject<TransactionQueryByTransIdResponse>(responseString);
+                TransactionQueryByTransIdResponse refundResult = JsonConvert.DeserializeObject<TransactionQueryByTransIdResponse>(responseString,settings);
                 return refundResult;
             }
         }
@@ -100,7 +104,7 @@ namespace ARTS.SslCommerze
                 HttpResponseMessage response = await client.GetAsync(requestUrl);
                 response.EnsureSuccessStatusCode();
                 string responseString = await response.Content.ReadAsStringAsync();
-                RefundQueryResponse refundResult = JsonConvert.DeserializeObject<RefundQueryResponse>(responseString);
+                RefundQueryResponse refundResult = JsonConvert.DeserializeObject<RefundQueryResponse>(responseString,settings);
                 return refundResult;
             }
         }
