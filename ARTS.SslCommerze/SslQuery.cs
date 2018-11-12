@@ -9,11 +9,12 @@ namespace ARTS.SslCommerze
 {
     public class SslQuery
     {
-        private static readonly JsonSerializerSettings settings = new JsonSerializerSettings
+        private static JsonSerializerSettings settings = new JsonSerializerSettings
         {
             NullValueHandling = NullValueHandling.Ignore,
             MissingMemberHandling = MissingMemberHandling.Ignore
         };
+
         public static async Task<TransactionQueryBySessionResponse> TransactionQueryBySessionIdAsync(string sessionId)
         {
             if (string.IsNullOrEmpty(sessionId))
