@@ -260,3 +260,7 @@ paket-files/
 __pycache__/
 *.pyc
 ARTS.SslCommerze/content/
+ARTS.SslCommerzeCore/content/
+ARTS.SslCommerzeCore/Properties/PublishProfiles/FolderProfile.pubxml
+ARTS.SslCommerzeCore/ARTS.SslCommerzeCore.nuspec
+ARTS.SslCommerze/ARTS.SslCommerze.nuspec
