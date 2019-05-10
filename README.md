@@ -1,9 +1,14 @@
-# Arts.SslCommerze
+# Arts.SslCommerze | Arts.SslCommerzeCore
 [SSLCOMMERZ](https://www.sslcommerz.com) is the first payment gateway in Bangladesh opening doors for merchants to receive payments on the internet via their online stores. Customers are able to buy products online using their credit cards as well as bank accounts.
 
 ### Dependencies
+#### ASP.NET MVC
 - .NETFramework, Version >= v4.5
 - Microsoft.AspNet.Mvc, Version >= 5.0.0
+#### ASP.NET MVC Core
+- Microsoft.AspNetCore.Http >= 2.0.0
+- Newtonsoft.Json >= 10.0.1
+
 
 ### Features
 - Creating session for initiate a trasaction
@@ -17,6 +22,11 @@ Check from Nuget [gallery](https://www.nuget.org/packages/Arts.SslCommerze)
 ```
 PM > Install-Package Arts.SslCommerze
 ```
+Check from Nuget [gallery](https://www.nuget.org/packages/Arts.SslCommerzeCore) for .NET Core
+```
+PM > Install-Package Arts.SslCommerzeCore
+```
+
 ### Configuration
 * Add a `sslcommerz.config` file in your project directory. The content will have your store information like **StoreId**, **StorePass**.
 **IsSandBox** will be `true` or `false`. If it is true, then all the requests will be sent to the sslCommerze [sandbox url]( https://sandbox.sslcommerz.com), else all will be sent to the [real transaction url](https://securepay.sslcommerz.com).
@@ -36,7 +46,7 @@ PM > Install-Package Arts.SslCommerze
     ```c#
     Configuration.Configure();
     ```
-    For MVC application place in `Application_Start()`.
+    For MVC application place in `Application_Start()`. and for Core application place in `ConfigureServices` in `Startup.cs`
 
 ### How to use
 * __Initiat a session for trransaction__:
